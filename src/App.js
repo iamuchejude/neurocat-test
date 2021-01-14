@@ -1,25 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import { useItems } from './hooks';
+import { List, Search, Plus } from './components';
+import Styles, { Container, Main, Header, Button } from './styles';
+import { debounce, getRandomInt } from './utils';
+import data from './data.json';
 
-function App() {
+const initalData = [
+  { value: 'Beans', id: 24323 },
+  { value: 'Rice', id: 22393 },
+];
+
+const App = () => {
+  const { items, filterItems, addItem } = useItems(initalData);
+
+  const handleFilter = (event) => {
+    debounce(filterItems)(event.target.value.trim());
+  };
+
+  const handleAddItem = () => {
+    const value = data[getRandomInt(0, data.length)];
+    const id = getRandomInt(11111, 99999);
+    addItem({ id, value });
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container>
+      <Styles />
+
+      <Header>
+        <Search onInput={handleFilter} />
+        <Button onClick={handleAddItem}>
+          <Plus />
+        </Button>
+      </Header>
+
+      <Main>
+        <List items={items} />
+      </Main>
+    </Container>
   );
-}
+};
 
 export default App;
