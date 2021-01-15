@@ -1,6 +1,6 @@
 import { useItems } from './hooks';
 import { List, Search, Plus } from './components';
-import Styles, { Container, Main, Header, Button } from './styles';
+import Styles, { Container, Main, Header, Button, Label } from './styles';
 import { debounce, getRandomInt } from './utils';
 import data from './data.json';
 
@@ -27,8 +27,11 @@ const App = () => {
       <Styles />
 
       <Header>
-        <Search onInput={handleFilter} />
-        <Button onClick={handleAddItem}>
+        <Label>
+          <Search onInput={handleFilter} name="search" />
+        </Label>
+
+        <Button aria-label="add item" onClick={handleAddItem}>
           <Plus />
         </Button>
       </Header>

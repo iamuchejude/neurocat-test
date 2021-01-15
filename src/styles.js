@@ -37,7 +37,6 @@ export const Items = styled.ul`
 `;
 
 export const Item = styled.li`
-  /* box-shadow: 0px 35px 60px rgba(0, 0, 0, 0.1); */
   text-transform: capitalize;
   border-radius: 40px;
   align-items: center;
@@ -58,11 +57,15 @@ export const Item = styled.li`
 `;
 
 export const Input = styled.input`
-  padding: 0 20px;
-  background: #fff;
   border-radius: 40px;
+  background: #fff;
+  padding: 0 20px;
   border: none;
+  width: 100%;
+  height: 100%;
 `;
+
+export const Label = styled.label``;
 
 export const Button = styled.button`
   border: 1px solid #000;
